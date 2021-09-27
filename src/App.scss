@@ -1,0 +1,195 @@
+$noteBgColor: moccasin;
+$buttonBgColor: cornflowerblue;
+
+@mixin flexible () {
+  display: flex;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Times New Roman";
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.app {
+  display: flex;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: column;
+
+  .control {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+
+  button {
+    @include flexible();
+    border: 2px solid blue;
+    justify-content: center;
+    height: 50px;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100px;
+    background-color: $buttonBgColor;
+    transition: .3s;
+
+    &:hover {
+      background-color: darken($buttonBgColor, 20%);
+    }
+  }
+
+  .input {
+    align-self: center;
+    width: 100%;
+    font-size: 32px;
+    padding: 10px;
+    height: 500px;
+    overflow: hidden;
+    overflow-y: auto;
+    border-bottom: 1px solid black;
+
+    span {
+      color: red;
+    }
+  }
+}
+
+.aside {
+  align-self: end;
+  height: 100vh;
+}
+
+.filter {
+  height: 15%;
+  border-left: 1px solid black;
+
+  input {
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    padding: 5px;
+  }
+}
+
+.notes-wrapper {
+  @include flexible();
+  border-left: 1px solid black;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 10px;
+  height: 85%;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $noteBgColor;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: .3s;
+
+  .editBtn-wrapper {
+    align-self: end;
+  }
+
+  .note-date {
+    display: flex;
+    justify-content: end;
+    border-bottom: 1px solid black;
+  }
+
+  .note-text {
+    font-size: 18px;
+    margin: 10px 0 20px 0;
+    height: 100px;
+    overflow: hidden;
+
+    span {
+      color: red;
+    }
+  }
+
+  &:hover {
+    background-color: darken($noteBgColor, 20%);
+  }
+}
+
+.tags {
+  display: flex;
+  justify-content: start;
+}
+
+.tag {
+  margin-right: 10px;
+  display: inline-block;
+  background-color: cornflowerblue;
+  padding: 8px;
+  font-size: 14px;
+  border: 2px solid blue;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: .3s;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .aside {
+    width: 100%;
+  }
+
+  .input-area {
+    height: 400px;
+
+    .control {
+      margin-bottom: 20px;
+    }
+  }
+
+  .filter {
+    border-bottom: 1px solid black;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .app {
+    flex-direction: row;
+  }
+  .input-area {
+    width: 60%;
+  }
+
+  .aside {
+    width: 40%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .input-area {
+    width: 70%;
+  }
+
+  .aside {
+    width: 30%;
+  }
+}
